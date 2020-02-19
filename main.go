@@ -7,7 +7,7 @@ import (
 )
 
 const baseApi = "https://accounts.spotify.com/api/token"
-const apiKey = "NzVhNjJkODgyMDZlNDQ1Y2EyNDQzMDBiNDk5ZWFjMzA6MzkzMDkwMzNkZjQ1NDAyMGI3NGRhZDAxYjI4MDJjYWI="
+const apiKey = ""
 
 func handleError(err error) {
 	if err != nil {
