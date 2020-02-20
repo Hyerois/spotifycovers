@@ -55,6 +55,7 @@ func main() {
 			for _, image := range artist.Images { //PRINTING SIZE AND LINK FOR EVERY PICTURES
 				fmt.Println(strconv.Itoa(image.Width) + "x" + strconv.Itoa(image.Height) + " : " + image.Url)
 			}
+			fmt.Println()
 
 		} else if choice == "2" { //SAME AS BEFORE
 			var albumId string
