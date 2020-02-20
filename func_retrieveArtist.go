@@ -26,7 +26,7 @@ func retrieveArtist(artistId string, token Token) (Artist, error) {
 	}
 
 	if res.StatusCode != 200 {
-		return artist, fmt.Errorf("L'Id n'existe pas.")
+		return artist, fmt.Errorf("404")
 	}
 
 	defer res.Body.Close()

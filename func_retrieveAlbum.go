@@ -26,7 +26,7 @@ func retrieveAlbum(albumId string, token Token) (SimplifiedAlbum, error) {
 	}
 
 	if res.StatusCode != 200 {
-		return album, fmt.Errorf("L'Id n'existe pas.")
+		return album, fmt.Errorf("404")
 	}
 
 	defer res.Body.Close()

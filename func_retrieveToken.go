@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+const baseApi = "https://accounts.spotify.com/api/token"
+
 func retrieveToken() (Token, error) {
 	var token Token
 
