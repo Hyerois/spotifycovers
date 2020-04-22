@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 func exit(err error) { //DISPLAYING ERROR THEN QUITTING PROGRAM
@@ -19,14 +20,21 @@ func main() {
 		exit(err)
 	}
 
-	fmt.Println("Pour trouver l'id d'un album ou d'un artiste:") //INSTRUCTIONS
-	fmt.Println(`Il suffit de se rendre sur la page Spotify de l'artiste en question puis de copier la chaîne de caractère qui se trouve dans l'URL.`)
-	fmt.Println(`Exemple: "https://open.spotify.com/artist/1Xyo4u8uXC1ZmMpatF05PJ" est l'adresse de la page de The Weeknd.`)
-	fmt.Println(`Ici l'id est: "1Xyo4u8uXC1ZmMpatF05PJ" (sans les guillemets).
+	fmt.Println(`
+	Pour trouver l'id d'un album ou d'un artiste:
+	Il suffit de se rendre sur la page Spotify de l'artiste en question puis de copier la chaîne de caractère qui se trouve dans l'URL.
+	Exemple: "https://open.spotify.com/artist/1Xyo4u8uXC1ZmMpatF05PJ" est l'adresse de la page de The Weeknd.
+	Ici l'id est: "1Xyo4u8uXC1ZmMpatF05PJ" (sans les guillemets).
+	Entrer "1" pour le lien de la photo d'un artiste
+	Entrer "2" pour le lien de la cover d'un album
+	Entrer "3" pour finir l'exécution du programme
+	
+	Voulez-vous enregistrer les résultats dans un fichier local à la racine du programme ? O/n
 	`)
-	fmt.Println(`Entrer "1" pour le lien de la photo d'un artiste`)
-	fmt.Println(`Entrer "2" pour le lien de la cover d'un album`)
-	fmt.Println(`Entrer "3" pour finir l'exécution du programme`)
+	var saveChoice string
+	var doSave bool
+	fmt.Scanln(&saveChoice)
+	doSave = strings.ToLower(saveChoice) == "o" || strings.ToLower(saveChoice) == ""
 
 	for true {
 		var choice string
@@ -49,7 +57,9 @@ func main() {
 				}
 			}
 
-			writeArtistToFile(artist)
+			if doSave {
+				writeArtistToFile(artist)
+			}
 
 			fmt.Println("Images pour l'artiste " + artist.Name + " :")
 			for _, image := range artist.Images { //PRINTING SIZE AND LINK FOR EVERY PICTURES
@@ -73,7 +83,9 @@ func main() {
 				}
 			}
 
-			writeAlbumToFile(album)
+			if doSave {
+				writeAlbumToFile(album)
+			}
 
 			fmt.Println("Images pour l'album " + album.Name + " :")
 			for _, image := range album.Images {
